@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS nauczyciel, klasa, sala, przedmiot, uczen, oplata, przedmiot_nauczany_w_klasie, plan_lekcji, lekcja, frekwencja, ocena;
+DROP TABLE IF EXISTS nauczyciel, klasa, sala, przedmiot, uczen, oplata, przedmiot_nauczany_w_klasie, plan_lekcji, lekcja, frekwencja, ocena CASCADE;
 
 CREATE TABLE nauczyciel (
   id_nauczyciel SERIAL PRIMARY KEY,
@@ -74,25 +74,3 @@ CREATE TABLE ocena (
   id_przedmiot INTEGER REFERENCES przedmiot_nauczany_w_klasie(id_przedmiot_nauczany_w_klasie),
   ocena TEXT
 );
-
-INSERT INTO nauczyciel (imie, nazwisko) VALUES
-  ('Jan', 'Kowalski'),
-  ('Anna', 'Nowak'),
-  ('Stefan', 'Abacki'),
-  ('Marian', 'Kowalski'),
-  ('Janina', 'Wiśniewska'),
-  ('Robert', 'Lewandowski');
-
-INSERT INTO klasa (nazwa, id_wychowawca) VALUES
-  ('1A', 2),
-  ('1B', 5),
-  ('2A', 1),
-  ('2B', 6),
-  ('3A', 4),
-  ('3B', 3);
-
-INSERT INTO uczen (id_klasa, imie, nazwisko) VALUES
-  (1, 'Rafał', 'Jakubczyk'),
-  (1, 'Adam', 'Abacki'),
-  (1, 'Adam', 'Babacki'),
-  (1, '', '');
