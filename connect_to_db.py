@@ -1,7 +1,7 @@
 import os
 import urllib.parse as up
 import psycopg2
-from connect_to_db import db_url
+from db_url import db_url
 
 up.uses_netloc.append("postgres")
 url = up.urlparse(db_url)

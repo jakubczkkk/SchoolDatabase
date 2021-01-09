@@ -2,17 +2,19 @@
 <title>Uczniowie</title>
 <table>
   <thead>
-    <td>Imie</td>
-    <td>Nazwisko</td>
-    <td>Klasa</td>
+    {% for column_name in column_names %}
+      <td>{{ column_name }}</td>
+    {% endfor %}
   </thead>
   <tbody>
-    {% for student in students: %}
+    {% for row in data: %}
       <tr>
-        <td>{{ student[0] }}</td>
-        <td>{{ student[1] }}</td>
-        <td>{{ student[2] }}</td>
+        {% for value in row: %}
+        <td>{{ value }}</td>
+        {% endfor %}
       </tr>
     {% endfor %}
   </tbody>
 </table>
+
+<a href="../"> powrót </a>

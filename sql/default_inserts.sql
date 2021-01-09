@@ -109,3 +109,16 @@ INSERT INTO uczen (id_klasa, imie, nazwisko) VALUES
   (6, 'Danuta', 'Piotrowska'),
   (6, 'Sebastian', 'Chmielewski'),
   (6, 'Adam', 'Andrzejewski');
+
+INSERT INTO przedmioty(nazwa) VALUES
+  ('Język polski'),
+  ('Język angielski'),
+  ('Matematyka'),
+  ('Historia'),
+  ('Geografia'),
+  ('Biologia'),
+  ('Fizyka'),
+  ('Wychowanie fizyczne');
+
+INSERT INTO sale(numer) VALUES
+  ('1'), ('2'), ('3'), ('4'), ('5'), ('6'), ('7'), ('Sala gimnastyczna');
