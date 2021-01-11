@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS nauczyciel, klasa, sala, przedmiot, uczen, oplata, przedmiot_nauczany_w_klasie, plan_lekcji, lekcja, frekwencja, ocena CASCADE;
+DROP TABLE IF EXISTS nauczyciel, klasa, sala, przedmiot, uczen, oplata, godzina_lekcyjna, przedmiot_nauczany_w_klasie, plan_lekcji, lekcja, frekwencja, ocena CASCADE;
 
 CREATE TABLE nauczyciel (
   id_nauczyciel SERIAL PRIMARY KEY,
@@ -44,11 +44,16 @@ CREATE TABLE przedmiot_nauczany_w_klasie (
   id_nauczyciel INTEGER REFERENCES nauczyciel(id_nauczyciel)
 );
 
+CREATE TABLE godzina_lekcyjna (
+  id_godzina_lekcyjna SERIAL PRIMARY KEY,
+  godzina_rozpoczecia TEXT,
+  godzina_zakonczenia TEXT
+);
+
 CREATE TABLE plan_lekcji (
   id_zajecia SERIAL PRIMARY KEY,
   id_przedmiot_nauczany_w_klasie INTEGER REFERENCES przedmiot_nauczany_w_klasie(id_przedmiot_nauczany_w_klasie),
-  godzina_rozpoczecia TEXT,
-  godzina_zakonczenia TEXT,
+  godzina INTEGER REFERENCES godzina_lekcyjna(id_godzina_lekcyjna),
   dzien_tygodnia TEXT,
   id_sala INTEGER REFERENCES sala(id_sala)
 );

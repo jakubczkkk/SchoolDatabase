@@ -11,4 +11,13 @@ conn = psycopg2.connect(database=url.path[1:],
     host=url.hostname,
     port=url.port
 )
+
 db = conn.cursor()
+
+create_base_file = open('sql/create_base.sql', encoding='utf-8', mode='r')
+db.execute(create_base_file.read())
+
+default_inserts_file = open('sql/default_inserts.sql', encoding='utf-8', mode='r')
+db.execute(default_inserts_file.read())
+
+conn.commit()

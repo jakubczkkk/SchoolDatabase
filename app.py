@@ -1,6 +1,6 @@
 from flask import Flask
 from flask import render_template
-from connect_to_db import db
+from connect_to_db import db, conn
 
 app = Flask(__name__)
 
@@ -37,3 +37,9 @@ def show_classrooms():
     db.execute("""SELECT numer FROM sala ORDER BY numer;""")
     classrooms = db.fetchall()
     return render_template('table.html', data=classrooms, column_names=["Numer"])
+
+@app.route('/godziny_lekcyjne')
+def show_hours():
+    db.execute("""SELECT godzina_rozpoczecia, godzina_zakonczenia FROM godzina_lekcyjna;""")
+    hours = db.fetchall()
+    return render_template('table.html', data=hours, column_names=["Początek", "Koniec"])
