@@ -1,0 +1,25 @@
+{% extends 'student.html' %}
+
+{% block student_content %}
+
+<table>
+
+  <thead>
+    <tr>
+      <th>Opis</th>
+      <th>Lekcja</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for data in frequency %}
+      <tr>
+        <td> {{ data[0] }} </td>
+        <td> {{ data[1] }} </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'student.html' %}
+
+{% block student_content %}
+
+<table>
+
+  <thead>
+    <tr>
+      <th>Przedmiot</th>
+      <th>Ocena</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for grade in grades %}
+      <tr>
+        <td> {{ grade[0] }} </td>
+        <td> {{ grade[1] }} </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}

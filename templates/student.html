@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<p>Wybrano ucznia {{ student_info[0][0] }} {{ student_info[0][1] }} </p>
+
+<a href={{ url_for('uczen_oplaty', id_uczen=student_info[0][2])}}> Oplaty </a>
+<a href={{ url_for('uczen_oceny', id_uczen=student_info[0][2])}}> Oceny </a>
+<a href={{ url_for('uczen_frekwencja', id_uczen=student_info[0][2])}}> Frekwencja </a>
+
+{% block student_content %}
+
+{% endblock %}
+
+{% endblock %}

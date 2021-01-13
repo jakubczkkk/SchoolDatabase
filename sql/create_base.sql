@@ -77,5 +77,5 @@ CREATE TABLE ocena (
   id_lekcja INTEGER REFERENCES lekcja(id_lekcja),
   id_uczen INTEGER REFERENCES uczen(id_uczen),
   id_przedmiot INTEGER REFERENCES przedmiot_nauczany_w_klasie(id_przedmiot_nauczany_w_klasie),
-  ocena TEXT
+  opis TEXT
 );

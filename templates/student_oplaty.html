@@ -1,0 +1,27 @@
+{% extends 'student.html' %}
+
+{% block student_content %}
+
+<table>
+
+  <thead>
+    <tr>
+      <th>Ile do zaplacanie</th>
+      <th>Ile zostalo zaplacone</th>
+      <th>Opis</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for oplata in oplaty %}
+      <tr>
+        <td> {{ oplata[0] }} </td>
+        <td> {{ oplata[1] }} </td>
+        <td> {{ oplata[2] }} </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}
