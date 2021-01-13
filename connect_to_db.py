@@ -1,7 +1,8 @@
 import os
 import urllib.parse as up
 import psycopg2
-from db_url import db_url
+
+db_url = "postgres://hteoajtw:2uSjqGQVjyBFqIFZVX2u_mJndOIN9kpk@dumbo.db.elephantsql.com:5432/hteoajtw"
 
 up.uses_netloc.append("postgres")
 url = up.urlparse(db_url)
