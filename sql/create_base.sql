@@ -7,8 +7,7 @@ CREATE TABLE nauczyciel (
 );
 
 CREATE TABLE klasa (
-  id_klasa SERIAL PRIMARY KEY,
-  nazwa TEXT,
+  id_klasa TEXT PRIMARY KEY,
   id_wychowawca INTEGER REFERENCES nauczyciel(id_nauczyciel)
 );
 
@@ -24,7 +23,7 @@ CREATE TABLE przedmiot (
 
 CREATE TABLE uczen (
   id_uczen SERIAL PRIMARY KEY,
-  id_klasa INTEGER REFERENCES klasa(id_klasa),
+  id_klasa TEXT REFERENCES klasa(id_klasa),
   imie TEXT,
   nazwisko TEXT
 );
@@ -39,7 +38,7 @@ CREATE TABLE oplata (
 
 CREATE TABLE przedmiot_nauczany_w_klasie (
   id_przedmiot_nauczany_w_klasie SERIAL PRIMARY KEY,
-  id_klasa INTEGER REFERENCES klasa(id_klasa),
+  id_klasa TEXT REFERENCES klasa(id_klasa),
   id_przedmiot INTEGER REFERENCES przedmiot(id_przedmiot),
   id_nauczyciel INTEGER REFERENCES nauczyciel(id_nauczyciel)
 );
