@@ -73,7 +73,6 @@ CREATE TABLE frekwencja (
 
 CREATE TABLE ocena (
   id_ocena SERIAL PRIMARY KEY,
-  id_lekcja INTEGER REFERENCES lekcja(id_lekcja),
   id_uczen INTEGER REFERENCES uczen(id_uczen),
   id_przedmiot INTEGER REFERENCES przedmiot_nauczany_w_klasie(id_przedmiot_nauczany_w_klasie),
   opis TEXT

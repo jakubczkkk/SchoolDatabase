@@ -21,4 +21,10 @@ db.execute(create_base_file.read())
 default_inserts_file = open('sql/default_inserts.sql', encoding='utf-8', mode='r')
 db.execute(default_inserts_file.read())
 
+create_base_file = open('sql/functions.sql', encoding='utf-8', mode='r')
+db.execute(create_base_file.read())
+
+default_inserts_file = open('sql/views.sql', encoding='utf-8', mode='r')
+db.execute(default_inserts_file.read())
+
 conn.commit()

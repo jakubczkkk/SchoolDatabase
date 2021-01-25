@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<a href="{{url_for('raporty_uczen')}}">Uczniowie</a>
+<a href="{{url_for('raporty_klasa')}}">Klasy</a>
+<a href="{{url_for('raporty_nauczyciel')}}">Nauczyciele</a>
+
+{% block raport_content %}
+{% endblock %}
+
+{% endblock %}

@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baza Danych Szkoła</title>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+  <title>Szkoła - Baza danych</title>
 </head>
 <body>
+  
+  <main>
+    <header>
+      <a href="{{url_for('index')}}"> Strona główna </a>
+    </header>
 
-  <a href="/klasa">Klasy</a>
-  <a href="/nauczyciel">Nauczyciele</a>
-  <a href="/plan_lekcji">Plan lekcji</a>
+    <nav>
+      <a href="{{url_for('raporty')}}">Raporty</a>
+      <a href="{{url_for('dodawanie')}}">Dodawanie do bazy</a>
+      <a href="{{url_for('edytowanie')}}">Edytowanie danych</a>
+      <a href="{{url_for('usuwanie')}}">Usuwanie z bazy</a>
+    </nav>
 
-  {% block content %}
+    <div>
+      {% block content %}
+      {% endblock %}
+    </div>
 
-  {% endblock %}
+  </main>
 
 </body>
 </html>
