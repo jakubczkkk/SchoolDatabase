@@ -2,7 +2,51 @@
   display: none;
 }
 
+body {
+  display: grid;
+  grid-template-rows: 40px auto;
+  margin: 0px;
+  height: 100vh;
+}
+
+header {
+  background-color: blue;
+  font-size: 30px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 main {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 100%;
+  /* height: 100%; */
+}
+
+#raporty {
+  background-color: #615fbb;
+}
+
+#edycja-bazy {
+  background-color: #9190c7;
+}
+
+table {
+  border: 1px solid purple;
+}
+
+th {
+
+  color: white;
+  background-color: purple;
+  margin: 1px;
+  padding: 4px;
+}
+
+td {
+
+  background-color: #9190c7;
+  margin: 1px;
+  padding: 4px;
 }
