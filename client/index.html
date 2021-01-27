@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="styles.css" />
+    <script src="scripts.js"></script>
+    <title>Szkoła - Baza danych</title>
+  </head>
+
+  <body>
+
+    <header>
+        Baza danych szkoła
+    </header>
+
+    <main>
+
+      <div id="raporty">
+
+        <nav class="raporty-nav" id="raporty">
+          <button onclick="raport('uczen')">Uczniowie</button>
+          <button onclick="raport('klasa')">Klasa</button>
+          <button onclick="raport('nauczyciel')">Nauczyciele</button>
+          <button onclick="raport('przedmiot')">Przedmioty</button>
+          <button onclick="raport('frekwencja')">Frekwencje</button>
+          <button onclick="raport('ocena')">Oceny</button>
+          <button onclick="raport('oplata')">Opłaty</button>
+          <button onclick="raport('godzina_lekcyjna')">Godziny</button>
+          <button onclick="raport('sala')">Sale lekcyjne</button>
+          <button onclick="raport('plan_lekcji')">Plan lekcji</button>
+          <button onclick="raport('przedmiot_nauczany_w_klasie')">Przedmioty nauczane w danej klasie</button>
+          <button onclick="raport('lekcja')">Lekcje</button>
+        </nav>
+
+        <div id="raporty-tabela">
+
+        </div>
+
+      </div>
+
+      <div id="edycja-bazy">
+
+        <nav>
+          <button class="akcja" onclick="wyborAkcji('dodawanie')">Dodawanie do bazy</button>
+          <button class="akcja" onclick="wyborAkcji('edytowanie')">Edytowanie danych</button>
+          <button class="akcja" onclick="wyborAkcji('usuwanie')">Usuwanie z bazy</button>
+        </nav>
+  
+        <nav class="akcja-nav" id="dodawanie">
+          <button>Uczniowie</button>
+          DODAWANIE
+        </nav>
+  
+        <nav class="akcja-nav" id="edytowanie">
+          <button>Uczniowie</button>
+          EDYTOWANIE
+        </nav>
+  
+        <nav class="akcja-nav" id="usuwanie">
+          <button>Uczniowie</button>
+          USUWANIE
+        </nav>
+
+      </div>
+
+    </main>
+    
+  </body>
+</html>
