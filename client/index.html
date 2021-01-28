@@ -43,26 +43,104 @@
       <div id="edycja-bazy">
 
         <nav>
-          <button class="akcja" onclick="wyborAkcji('dodawanie')">Dodawanie do bazy</button>
+          <button class="akcja" onclick="wyborAkcji('informacje')">Informacje</button>
           <button class="akcja" onclick="wyborAkcji('dodawanie')">Dodawanie do bazy</button>
           <button class="akcja" onclick="wyborAkcji('edytowanie')">Edytowanie danych</button>
           <button class="akcja" onclick="wyborAkcji('usuwanie')">Usuwanie z bazy</button>
         </nav>
   
-        <nav class="akcja-nav" id="dodawanie">
-          <button>Uczniowie</button>
-          DODAWANIE
-        </nav>
+        <div id="database-response">
+
+        </div>
+
+        <div class="akcja-nav" id="dodawanie">
+
+          <button onclick="dodawanie('uczen')">Uczeń</button>
+          <button onclick="dodawanie('nauczyciel')">Nauczyciel</button>
+          <button onclick="dodawanie('lekcja')">Lekcja</button>
+          <button onclick="dodawanie('ocena')">Ocena</button>
+          <button onclick="dodawanie('oplata')">Opłata</button>
+
+          <div class="dodawanie" id="dodaj-uczen">
+            <form id="dodaj-uczen-form">
+              Imię
+              <input name="imie" type="text">
+              Nazwisko
+              <input name="nazwisko" type="text">
+              Klasa
+              <input name="id_klasa" type="text">
+            </form>
+            <button onclick="dodaj('uczen')">Dodaj ucznia</button>
+          </div>
+
+          <div class="dodawanie" id="dodaj-lekcja">
+            <form id="dodaj-lekcja-form">
+              ID Zajęć z planu lekcji
+              <input name="id_zajecia" type="number">
+              Dzień
+              <input name="dzien" type="date">
+              Temat
+              <input name="temat" type="text">
+            </form>
+            <button onclick="dodaj('lekcja')">Dodaj lekcje</button>
+          </div>
+
+          <div class="dodawanie" id="dodaj-nauczyciel">
+            <form id="dodaj-nauczyciel-form">
+              Imię
+              <input name="imie" type="text">
+              Nazwisko
+              <input name="nazwisko" type="text">
+            </form>
+            <button onclick="dodaj('nauczyciel')">Dodaj nauczyciela</button>
+          </div>
+
+          <div class="dodawanie" id="dodaj-ocena">
+            <form id="dodaj-ocena-form">
+              ID_Ucznia
+              <input name="id_uczen" type="text">
+              ID Przedmiotu
+              <input name="id_przedmiot" type="text">
+              Ocena
+              <input name="opis" type="text">
+            </form>
+            <button onclick="dodaj('ocena')">Dodaj ocenę</button>
+          </div>
+
+          <div class="dodawanie" id="dodaj-oplata">
+            <form id="dodaj-oplata-form">
+              ID_Ucznia (Wpisz 0, żeby dodać opłaty wszystkim uczniom)
+              <input name="id_uczen" type="text">
+              Ile do zapłaty
+              <input name="ile_do_zaplacenia" type="text">
+              Za co?
+              <input name="opis" type="text">
+            </form>
+            <button onclick="dodaj('oplata')">Dodaj opłaty</button>
+          </div>
+        </div>
+
+        <div class="akcja-nav" id="edytowanie">
+          <button onclick="dodawanie('uczen')">Zmień frekwencje</button>
+
+        </div>
   
-        <nav class="akcja-nav" id="edytowanie">
-          <button>Uczniowie</button>
-          EDYTOWANIE
-        </nav>
-  
-        <nav class="akcja-nav" id="usuwanie">
-          <button>Uczniowie</button>
-          USUWANIE
-        </nav>
+        <div class="akcja-nav" id="usuwanie">
+          <form id="usuwanie-form">
+            Wybierz z listy z której tabeli usuwamy rekord
+            <select id="place" name="tabela" size="5">
+              <option value="uczen">Uczeń</option>
+              <option value="nauczyciel">Nauczyciel</option>
+              <option value="ocena">Ocena</option>
+              <option value="oplata">Opłata</option>
+              <option value="lekcja">Lekcja</option>
+            </select>
+            
+            Podaj ID
+            <input type="text" name="id">
+          </form>
+          <button onclick="usun()">Usuń</button>
+        </div>
 
       </div>
 

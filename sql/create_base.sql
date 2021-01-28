@@ -31,8 +31,8 @@ CREATE TABLE uczen (
 CREATE TABLE oplata (
   id_oplata SERIAL PRIMARY KEY,
   id_uczen INTEGER REFERENCES uczen(id_uczen),
-  ile_do_zaplacenia INTEGER,
-  ile_zostalo_zaplacone INTEGER,
+  ile_do_zaplacenia FLOAT,
+  ile_zostalo_zaplacone FLOAT,
   opis TEXT
 );
 
@@ -75,5 +75,5 @@ CREATE TABLE ocena (
   id_ocena SERIAL PRIMARY KEY,
   id_uczen INTEGER REFERENCES uczen(id_uczen),
   id_przedmiot INTEGER REFERENCES przedmiot(id_przedmiot),
-  opis TEXT
+  opis FLOAT
 );

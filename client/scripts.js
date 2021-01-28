@@ -44,3 +44,36 @@ function raport(tabela) {
   .then(res => res.json().then(json => document.getElementById("raporty-tabela").innerHTML = JSONToTable(json)));
 
 }
+
+function dodawanie(tabela) {
+
+  [...document.getElementsByClassName("dodawanie")]
+  .forEach(element => element.style.display = element.id == `dodaj-${tabela}` ? "block" : "none");  
+
+}
+
+function dodaj(tabela) {
+
+  const data = {};
+  [...document.forms[`dodaj-${tabela}-form`].getElementsByTagName("input")]
+  .forEach(input => data[input.name] = input.value);
+  fetch(
+    SERVER_URL + `dodaj/${tabela}`,
+    {method: 'post', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)},
+  )
+  .then(res => res.json().then(json => document.getElementById("database-response").innerHTML = json.message));
+
+}
+
+function usun() {
+
+  const toDelete = {
+    id: document.forms['usuwanie-form']['id'].value
+  };
+  fetch(
+    SERVER_URL + `usun/${document.forms['usuwanie-form']['tabela'].value}`,
+    {method: 'delete', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(toDelete)},
+  )
+  .then(res => res.json().then(json => document.getElementById("database-response").innerHTML = json.message));
+
+}

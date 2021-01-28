@@ -47,7 +47,7 @@ ORDER BY numer;
 CREATE OR REPLACE VIEW oplata_raport AS
 SELECT o.id_oplata "ID", o.opis "Opis", o.ile_do_zaplacenia "Do zapłaty", o.ile_zostalo_zaplacone "Zapłacono", u.imie "Imię", u.nazwisko "Nazwisko"
 FROM oplata o
-JOIN uczen u ON u.id_uczen=o.id_oplata;
+JOIN uczen u ON u.id_uczen=o.id_uczen;
 
 CREATE OR REPLACE VIEW lekcja_raport AS
 SELECT l.id_lekcja "ID", l.temat "Temat", l.dzien "Dzień", p.nazwa "Przedmiot", pnk.id_klasa "Klasa"
