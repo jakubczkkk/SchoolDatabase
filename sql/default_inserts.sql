@@ -115,7 +115,7 @@ INSERT INTO przedmiot_nauczany_w_klasie(id_klasa, id_przedmiot, id_nauczyciel) V
   ('1C', 13, 1);
  
 
-INSERT INTO plan_lekcji(id_przedmiot_nauczany_w_klasie, godzina, dzien_tygodnia, id_sala) VALUES
+INSERT INTO plan_lekcji(id_przedmiot_nauczany_w_klasie, id_godzina_lekcyjna, dzien_tygodnia, id_sala) VALUES
   (2, 1, 'Poniedziałek', 3),
   (2, 2, 'Poniedziałek', 3),
   (1, 3, 'Poniedziałek', 3),

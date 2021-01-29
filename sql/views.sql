@@ -25,11 +25,11 @@ FROM frekwencja f
 JOIN uczen u ON u.id_uczen=f.id_uczen;
 
 CREATE OR REPLACE VIEW plan_lekcji_raport AS
-SELECT pl.id_zajecia "ID", k.id_klasa "Klasa", pl.dzien_tygodnia "Dzień", g.godzina_rozpoczecia "Godz. rozp.", g.godzina_zakonczenia "Godz. zak.", p.nazwa "Nazwa", s.numer "Sala", concat(n.imie, ' ', n.nazwisko) "Nauczyciel"
+SELECT pl.id_plan_lekcji "ID", k.id_klasa "Klasa", pl.dzien_tygodnia "Dzień", g.godzina_rozpoczecia "Godz. rozp.", g.godzina_zakonczenia "Godz. zak.", p.nazwa "Nazwa", s.numer "Sala", concat(n.imie, ' ', n.nazwisko) "Nauczyciel"
 FROM plan_lekcji pl
 JOIN przedmiot_nauczany_w_klasie pnk ON pnk.id_przedmiot_nauczany_w_klasie=pl.id_przedmiot_nauczany_w_klasie
 JOIN przedmiot p ON p.id_przedmiot=pnk.id_przedmiot
-JOIN godzina_lekcyjna g ON g.id_godzina_lekcyjna=pl.godzina
+JOIN godzina_lekcyjna g ON g.id_godzina_lekcyjna=pl.id_godzina_lekcyjna
 JOIN klasa k ON k.id_klasa=pnk.id_klasa
 JOIN sala s ON s.id_sala=pl.id_sala
 JOIN nauczyciel n ON n.id_nauczyciel=pnk.id_nauczyciel;
@@ -52,7 +52,7 @@ JOIN uczen u ON u.id_uczen=o.id_uczen;
 CREATE OR REPLACE VIEW lekcja_raport AS
 SELECT l.id_lekcja "ID", l.temat "Temat", l.dzien "Dzień", p.nazwa "Przedmiot", pnk.id_klasa "Klasa"
 FROM lekcja l
-JOIN plan_lekcji pl ON pl.id_zajecia=l.id_zajecia
+JOIN plan_lekcji pl ON pl.id_plan_lekcji=l.id_plan_lekcji
 JOIN przedmiot_nauczany_w_klasie pnk ON pnk.id_przedmiot_nauczany_w_klasie=pl.id_przedmiot_nauczany_w_klasie
 JOIN przedmiot p ON pnk.id_przedmiot=p.id_przedmiot;
 

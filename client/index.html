@@ -53,6 +53,50 @@
 
         </div>
 
+        <div class="akcja-nav" id="informacje">
+
+          <button onclick="informacje('plan_lekcji_klasy')">Plan lekcji klasy</button>
+          <button onclick="informacje('oceny_ucznia')">Oceny</button>
+          <button onclick="informacje('info_frekwencja')">Frekwencja</button>
+          <button onclick="informacje('info_oplata')">Opłaty</button>
+
+          <div class="informacje" id="info-plan_lekcji_klasy">
+            <form id="info-plan_lekcji_klasy-form">
+              Wybierz klase
+              <input name="id_klasa" type="text">
+            </form>
+            <button onclick="info('plan_lekcji_klasy')">Wyswietl plan lekcji klasy</button>
+          </div>
+
+          <div class="informacje" id="info-oceny_ucznia">
+            <form id="info-oceny_ucznia-form">
+              Wybierz ucznia
+              <input name="id_uczen" type="text">
+            </form>
+            <button onclick="info('oceny_ucznia')">Wyswietl oceny ucznia</button>
+          </div>
+
+          <div class="informacje" id="info-info_frekwencja">
+            <form id="info-info_frekwencja-form">
+              Wybierz ucznia
+              <input name="id_uczen" type="text">
+            </form>
+            <button onclick="info('info_frekwencja')">Wyswietl informacje o frekwencji ucznia</button>
+          </div>
+
+          <div class="informacje" id="info-info_oplata">
+            <form id="info-info_oplata-form">
+              Wybierz ucznia
+              <input name="id_uczen" type="text">
+            </form>
+            <button onclick="info('info_oplata')">Wyswietl informacje o opłatach ucznia</button>
+          </div>
+
+          <div id="info-response">
+
+          </div>
+        </div>
+
         <div class="akcja-nav" id="dodawanie">
 
           <button onclick="dodawanie('uczen')">Uczeń</button>
@@ -76,7 +120,7 @@
           <div class="dodawanie" id="dodaj-lekcja">
             <form id="dodaj-lekcja-form">
               ID Zajęć z planu lekcji
-              <input name="id_zajecia" type="number">
+              <input name="id_plan_lekcji" type="number">
               Dzień
               <input name="dzien" type="date">
               Temat
@@ -121,13 +165,91 @@
         </div>
 
         <div class="akcja-nav" id="edytowanie">
-          <button onclick="dodawanie('uczen')">Zmień frekwencje</button>
+          <button onclick="edytowanie('frekwencja')">Frekwencja</button>
+          <button onclick="edytowanie('ocena')">Ocena</button>
+          <button onclick="edytowanie('oplata')">Opłata</button>
+          <button onclick="edytowanie('przedmiot_nauczany_w_klasie')">Przedmiot nauczany_w_klasie</button>
+          <button onclick="edytowanie('klasa')">Klasa</button>
+          <button onclick="edytowanie('plan_lekcji')">Plan lekcji</button>
+
+          <div class="edytowanie" id="zmien-frekwencja">
+            <form id="zmien-frekwencja-form">
+              ID
+              <input name="id" type="text">
+              <select name="opis" size="3">
+                <option value="Nieobecność nieusprawiedliwiona">Nieobecność usprawiedliwiona</option>
+                <option value="Nieobecność usprawiedliwiona">Nieobecność nieusprawiedliwiona</option>
+                <option value="Obecność">Obecność</option>
+              </select>
+            </form>
+            <button onclick="zmien('frekwencja')">Zmień frekwencje</button>
+          </div>
+
+          <div class="edytowanie" id="zmien-ocena">
+            <form id="zmien-ocena-form">
+              ID
+              <input name="id" type="text">
+              Ocena
+              <input name="opis" type="text">
+            </form>
+            <button onclick="zmien('ocena')">Zmień ocenę</button>
+          </div>
+
+          <div class="edytowanie" id="zmien-oplata">
+            <form id="zmien-oplata-form">
+              ID
+              <input name="id" type="text">
+              Ile wplacamy
+              <input name="ile_zostalo_zaplacone" type="text">
+            </form>
+            <button onclick="zmien('oplata')">Dokonaj wpłaty</button>
+          </div>
+
+          <div class="edytowanie" id="zmien-przedmiot_nauczany_w_klasie">
+            <form id="zmien-przedmiot_nauczany_w_klasie-form">
+              ID
+              <input name="id" type="text">
+              ID nowego nauczyciela
+              <input name="id_nauczyciel" type="text">
+            </form>
+            <button onclick="zmien('przedmiot_nauczany_w_klasie')">Zmien nauczyciela</button>
+          </div>
+
+          <div class="edytowanie" id="zmien-klasa">
+            <form id="zmien-klasa-form">
+              ID
+              <input name="id" type="text">
+              ID nowego wychowawcy
+              <input name="id_wychowawca" type="text">
+            </form>
+            <button onclick="zmien('klasa')">Zmien nauczyciela</button>
+          </div>
+
+          <div class="edytowanie" id="zmien-plan_lekcji">
+            <form id="zmien-plan_lekcji-form">
+              ID
+              <input name="id" type="text">
+              Dzień tygodnia
+              <select name="dzien_tygodnia" size="5">
+                <option value="Poniedziałek">Poniedziałek</option>
+                <option value="Wtorek">Wtorek</option>
+                <option value="Środa">Środa</option>
+                <option value="Czwartek">Czwartek</option>
+                <option value="Piątek">Piątek</option>
+              </select>
+              Godzina lekcyjna
+              <input name="id_godzina_lekcyjna" type="text">
+              Nowa sala
+              <input name="id_sala" type="text">
+            </form>
+            <button onclick="zmien('plan_lekcji')">Przenieś lekcję na nowy termin</button>
+          </div>
 
         </div>
   
         <div class="akcja-nav" id="usuwanie">
           <form id="usuwanie-form">
-            Wybierz z listy z której tabeli usuwamy rekord
+            Wybierz z której tabeli usuwamy rekord
             <select id="place" name="tabela" size="5">
               <option value="uczen">Uczeń</option>
               <option value="nauczyciel">Nauczyciel</option>

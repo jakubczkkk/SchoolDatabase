@@ -50,16 +50,16 @@ CREATE TABLE godzina_lekcyjna (
 );
 
 CREATE TABLE plan_lekcji (
-  id_zajecia SERIAL PRIMARY KEY,
+  id_plan_lekcji SERIAL PRIMARY KEY,
   id_przedmiot_nauczany_w_klasie INTEGER REFERENCES przedmiot_nauczany_w_klasie(id_przedmiot_nauczany_w_klasie),
-  godzina INTEGER REFERENCES godzina_lekcyjna(id_godzina_lekcyjna),
+  id_godzina_lekcyjna INTEGER REFERENCES godzina_lekcyjna(id_godzina_lekcyjna),
   dzien_tygodnia TEXT,
   id_sala INTEGER REFERENCES sala(id_sala)
 );
 
 CREATE TABLE lekcja (
   id_lekcja SERIAL PRIMARY KEY,
-  id_zajecia INTEGER REFERENCES plan_lekcji(id_zajecia),
+  id_plan_lekcji INTEGER REFERENCES plan_lekcji(id_plan_lekcji),
   dzien TEXT,
   temat TEXT
 );

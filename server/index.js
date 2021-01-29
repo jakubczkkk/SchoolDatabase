@@ -49,4 +49,32 @@ app.delete('/usun/:tabela', (req, res) => {
       else res.send({message: 'Usunięto z bazy!'});
   });
 
-})
+});
+
+app.post('/zmien/:tabela/:id', (req, res) => {
+
+  let columnNames = "";
+  Object.keys(req.body).forEach(param => columnNames += `${param},` );
+
+  let values = ""
+  Object.values(req.body).forEach(param => values += `'${param}',` );
+
+  client.query(`UPDATE ${req.params.tabela}
+  SET (${columnNames.slice(0, -1)}) = (${values.slice(0, -1)})
+  WHERE id_${req.params.tabela} = '${req.params.id}'`,
+  (err, result) => {
+      if (err) res.send({message: err.message});
+      else res.send({message: 'Zmieniono zawartość'});
+  });
+
+});
+
+app.post('/info/:funkcja', (req, res) => {
+
+  client.query(`SELECT * FROM ${req.params.funkcja} ('${Object.values(req.body)[0]}')`,
+  (err, result) => {
+      if (err) res.send({message: err.message});
+      else res.send(JSON.stringify(result.rows));
+  });
+
+});

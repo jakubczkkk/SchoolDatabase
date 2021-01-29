@@ -52,6 +52,13 @@ function dodawanie(tabela) {
 
 }
 
+function edytowanie(tabela) {
+
+  [...document.getElementsByClassName("edytowanie")]
+  .forEach(element => element.style.display = element.id == `zmien-${tabela}` ? "block" : "none");  
+
+}
+
 function dodaj(tabela) {
 
   const data = {};
@@ -75,5 +82,43 @@ function usun() {
     {method: 'delete', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(toDelete)},
   )
   .then(res => res.json().then(json => document.getElementById("database-response").innerHTML = json.message));
+
+}
+
+function zmien(tabela) {
+
+  const data = {};
+  [...document.forms[`zmien-${tabela}-form`].getElementsByTagName("select")]
+  .forEach(select => data[select.name] = select.value);
+  [...document.forms[`zmien-${tabela}-form`].getElementsByTagName("input")]
+  .filter(input => input.name != 'id')
+  .forEach(input => data[input.name] = input.value);
+
+  fetch(
+    SERVER_URL + `zmien/${tabela}/${document.forms[`zmien-${tabela}-form`]['id'].value}`,
+    {method: 'post', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)},
+  )
+  .then(res => res.json().then(json => document.getElementById("database-response").innerHTML = json.message));
+
+}
+
+function informacje(funkcja) {
+
+  [...document.getElementsByClassName("informacje")]
+  .forEach(element => element.style.display = element.id == `info-${funkcja}` ? "block" : "none");   
+
+}
+
+function info(funkcja) {
+
+  const data = {};
+  [...document.forms[`info-${funkcja}-form`].getElementsByTagName("input")]
+  .forEach(select => data[select.name] = select.value);
+
+  fetch(
+    SERVER_URL + `info/${funkcja}`,
+    {method: 'post', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)},
+  )
+  .then(res => res.json().then(json => document.getElementById("info-response").innerHTML = JSONToTable(json)));
 
 }
