@@ -53,50 +53,6 @@
 
         </div>
 
-        <div class="akcja-nav" id="informacje">
-
-          <button onclick="informacje('plan_lekcji_klasy')">Plan lekcji klasy</button>
-          <button onclick="informacje('oceny_ucznia')">Oceny</button>
-          <button onclick="informacje('info_frekwencja')">Frekwencja</button>
-          <button onclick="informacje('info_oplata')">Opłaty</button>
-
-          <div class="informacje" id="info-plan_lekcji_klasy">
-            <form id="info-plan_lekcji_klasy-form">
-              Wybierz klase
-              <input name="id_klasa" type="text">
-            </form>
-            <button onclick="info('plan_lekcji_klasy')">Wyswietl plan lekcji klasy</button>
-          </div>
-
-          <div class="informacje" id="info-oceny_ucznia">
-            <form id="info-oceny_ucznia-form">
-              Wybierz ucznia
-              <input name="id_uczen" type="text">
-            </form>
-            <button onclick="info('oceny_ucznia')">Wyswietl oceny ucznia</button>
-          </div>
-
-          <div class="informacje" id="info-info_frekwencja">
-            <form id="info-info_frekwencja-form">
-              Wybierz ucznia
-              <input name="id_uczen" type="text">
-            </form>
-            <button onclick="info('info_frekwencja')">Wyswietl informacje o frekwencji ucznia</button>
-          </div>
-
-          <div class="informacje" id="info-info_oplata">
-            <form id="info-info_oplata-form">
-              Wybierz ucznia
-              <input name="id_uczen" type="text">
-            </form>
-            <button onclick="info('info_oplata')">Wyswietl informacje o opłatach ucznia</button>
-          </div>
-
-          <div id="info-response">
-
-          </div>
-        </div>
-
         <div class="akcja-nav" id="dodawanie">
 
           <button onclick="dodawanie('uczen')">Uczeń</button>
@@ -262,6 +218,50 @@
             <input type="text" name="id">
           </form>
           <button onclick="usun()">Usuń</button>
+        </div>
+
+        <div class="akcja-nav" id="informacje">
+
+          <button onclick="informacje('plan_lekcji_klasy')">Plan lekcji klasy</button>
+          <button onclick="informacje('oceny_ucznia')">Oceny</button>
+          <button onclick="informacje('info_frekwencja')">Frekwencja</button>
+          <button onclick="informacje('info_oplata')">Opłaty</button>
+
+          <div class="informacje" id="info-plan_lekcji_klasy">
+            <form id="info-plan_lekcji_klasy-form">
+              Wybierz klase
+              <input name="id_klasa" type="text">
+            </form>
+            <button onclick="info('plan_lekcji_klasy')">Wyswietl plan lekcji klasy</button>
+          </div>
+
+          <div class="informacje" id="info-oceny_ucznia">
+            <form id="info-oceny_ucznia-form">
+              Wybierz ucznia
+              <input name="id_uczen" type="text">
+            </form>
+            <button onclick="info('oceny_ucznia')">Wyswietl oceny ucznia</button>
+          </div>
+
+          <div class="informacje" id="info-info_frekwencja">
+            <form id="info-info_frekwencja-form">
+              Wybierz ucznia
+              <input name="id_uczen" type="text">
+            </form>
+            <button onclick="info('info_frekwencja')">Wyswietl informacje o frekwencji ucznia</button>
+          </div>
+
+          <div class="informacje" id="info-info_oplata">
+            <form id="info-info_oplata-form">
+              Wybierz ucznia
+              <input name="id_uczen" type="text">
+            </form>
+            <button onclick="info('info_oplata')">Wyswietl informacje o opłatach ucznia</button>
+          </div>
+
+          <div id="info-response">
+
+          </div>
         </div>
 
       </div>

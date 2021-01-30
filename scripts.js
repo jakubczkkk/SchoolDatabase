@@ -119,6 +119,6 @@ function info(funkcja) {
     SERVER_URL + `info/${funkcja}`,
     {method: 'post', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)},
   )
-  .then(res => res.json().then(json => document.getElementById("info-response").innerHTML = JSONToTable(json)));
+  .then(res => res.json().then(json => document.getElementById("info-response").innerHTML = res.status == 200 ? JSONToTable(json) : json.message));
 
 }

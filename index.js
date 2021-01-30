@@ -6,9 +6,9 @@ const pg = require("pg");
 const app = express();
 app.use(cors());
 app.use(bodyParser())
-
+const DATABASE_URL='postgres://hteoajtw:2uSjqGQVjyBFqIFZVX2u_mJndOIN9kpk@dumbo.db.elephantsql.com:5432/hteoajtw'
 const PORT = process.env.PORT || 5000;
-const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client(DATABASE_URL);
 client.connect(err => {
   if (err) return console.error('could not connect to postgres', err);
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
@@ -33,7 +33,7 @@ app.post('/dodaj/:tabela', (req, res) => {
 
   client.query(`INSERT INTO ${req.params.tabela} (${columnNames.slice(0, -1)})
   VALUES (${values.slice(0, -1)})`, (err, result) => {
-    if (err) res.send({message: err.message});
+    if (err) res.status(404).send({message: err.message});
     else res.send({message: 'Dodano do bazy!'});
   });
 
@@ -44,7 +44,7 @@ app.delete('/usun/:tabela', (req, res) => {
   client.query(`DELETE FROM ${req.params.tabela}
   WHERE id_${req.params.tabela}=${req.body.id}`,
   (err, result) => {
-      if (err) res.send({message: err.message});
+      if (err) res.status(404).send({message: err.message});
       else res.send({message: 'Usunięto z bazy!'});
   });
 
@@ -62,7 +62,7 @@ app.post('/zmien/:tabela/:id', (req, res) => {
   SET (${columnNames.slice(0, -1)}) = (${values.slice(0, -1)})
   WHERE id_${req.params.tabela} = '${req.params.id}'`,
   (err, result) => {
-      if (err) res.send({message: err.message});
+      if (err) res.status(404).send({message: err.message});
       else res.send({message: 'Zmieniono zawartość'});
   });
 
@@ -72,7 +72,7 @@ app.post('/info/:funkcja', (req, res) => {
 
   client.query(`SELECT * FROM ${req.params.funkcja} ('${Object.values(req.body)[0]}')`,
   (err, result) => {
-      if (err) res.send({message: err.message});
+      if (err) res.status(404).send({message: err.message});
       else res.send(JSON.stringify(result.rows));
   });
 

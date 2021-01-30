@@ -60,7 +60,7 @@ CREATE TABLE plan_lekcji (
 CREATE TABLE lekcja (
   id_lekcja SERIAL PRIMARY KEY,
   id_plan_lekcji INTEGER REFERENCES plan_lekcji(id_plan_lekcji),
-  dzien TEXT,
+  dzien DATE,
   temat TEXT
 );
 
