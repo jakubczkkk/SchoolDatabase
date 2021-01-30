@@ -19,6 +19,14 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 })
 
+app.get('/styles.css', function(req, res) {
+  res.sendFile(__dirname + "/styles.css");
+});
+
+app.get('/scripts.js', function(req, res) {
+  res.sendFile(__dirname + "/scripts.js");
+});
+
 app.get('/raport/:tabela', (req, res) => {
 
   client.query(`SELECT * FROM ${req.params.tabela}_raport`, (err, result) => {
