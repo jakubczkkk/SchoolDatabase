@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const pg = require("pg");
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -15,7 +16,7 @@ client.connect(err => {
 });
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html');
+  res.sendFile(path.join(__dirname + '/index.html'));
 })
 
 app.get('/raport/:tabela', (req, res) => {
