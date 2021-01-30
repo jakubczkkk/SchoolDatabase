@@ -7,9 +7,8 @@ const app = express();
 app.use(cors());
 app.use(bodyParser())
 
-const PORT = 5000;
-const CONNETION_STRING = "postgres://hteoajtw:2uSjqGQVjyBFqIFZVX2u_mJndOIN9kpk@dumbo.db.elephantsql.com:5432/hteoajtw";
-const client = new pg.Client(CONNETION_STRING);
+const PORT = process.env.PORT || 5000;
+const client = new pg.Client(process.env.DATABASE_URL);
 client.connect(err => {
   if (err) return console.error('could not connect to postgres', err);
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
