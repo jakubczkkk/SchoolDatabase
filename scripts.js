@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:5000/";
+const SERVER_URL = "https://school-database-f43dsa.herokuapp.com/";
 
 function wyborAkcji(id) {
 
