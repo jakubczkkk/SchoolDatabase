@@ -14,6 +14,10 @@ client.connect(err => {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 });
 
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+})
+
 app.get('/raport/:tabela', (req, res) => {
 
   client.query(`SELECT * FROM ${req.params.tabela}_raport`, (err, result) => {
