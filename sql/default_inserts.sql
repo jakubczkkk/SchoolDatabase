@@ -213,4 +213,4 @@ INSERT INTO ocena (id_uczen, id_przedmiot, opis) VALUES
   (1, 6, 1);
 
 INSERT INTO oplata (id_uczen, ile_do_zaplacenia, opis) VALUES
-  (0, 50.00, 'Ubezpieczenie');
+  (0, 50, 'Ubezpieczenie');

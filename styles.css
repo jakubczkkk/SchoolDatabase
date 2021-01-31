@@ -17,8 +17,9 @@ input {
 
 body {
   display: grid;
-  grid-template-rows: 40px auto;
+  grid-template-rows: 60px auto;
   font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
   height: 100vh;
   text-align: center;
@@ -30,6 +31,7 @@ header {
   color: rgb(245, 239, 239);
   text-transform: uppercase;
   text-align: center;
+  padding: 6px;
 }
 
 main {

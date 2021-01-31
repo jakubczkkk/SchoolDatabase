@@ -306,7 +306,8 @@ BEGIN
     SELECT 1 FROM plan_lekcji pl
     WHERE pl.id_sala=NEW.id_sala
     AND pl.dzien_tygodnia=NEW.dzien_tygodnia
-    AND pl.id_godzina_lekcyjna=NEW.id_godzina_lekcyjna)) THEN
+    AND pl.id_godzina_lekcyjna=NEW.id_godzina_lekcyjna
+    AND pl.id_plan_lekcji<>NEW.id_plan_lekcji)) THEN
         RAISE EXCEPTION 'Sala jest zajęta w tym terminie';
     END IF;
 
@@ -314,8 +315,10 @@ BEGIN
     IF (SELECT EXISTS (
     SELECT 1 FROM plan_lekcji pl
     JOIN przedmiot_nauczany_w_klasie pnk ON pnk.id_przedmiot_nauczany_w_klasie=pl.id_przedmiot_nauczany_w_klasie
-    WHERE pnk.id_nauczyciel=idn AND pl.dzien_tygodnia=NEW.dzien_tygodnia AND pl.id_godzina_lekcyjna=NEW.id_godzina_lekcyjna
-    )) THEN
+    WHERE pnk.id_nauczyciel=idn 
+    AND pl.dzien_tygodnia=NEW.dzien_tygodnia 
+    AND pl.id_godzina_lekcyjna=NEW.id_godzina_lekcyjna
+    AND pl.id_plan_lekcji<>NEW.id_plan_lekcji)) THEN
         RAISE EXCEPTION 'Nauczyciel ma w tym czasie zajęcia';
     END IF;
 
@@ -323,8 +326,10 @@ BEGIN
     IF (SELECT EXISTS (
     SELECT 1 FROM plan_lekcji pl
     JOIN przedmiot_nauczany_w_klasie pnk ON pnk.id_przedmiot_nauczany_w_klasie=pl.id_przedmiot_nauczany_w_klasie
-    WHERE pnk.id_klasa=idk AND pl.dzien_tygodnia=NEW.dzien_tygodnia AND pl.id_godzina_lekcyjna=NEW.id_godzina_lekcyjna
-    )) THEN
+    WHERE pnk.id_klasa=idk 
+    AND pl.dzien_tygodnia=NEW.dzien_tygodnia 
+    AND pl.id_godzina_lekcyjna=NEW.id_godzina_lekcyjna
+    AND pl.id_plan_lekcji<>NEW.id_plan_lekcji)) THEN
         RAISE EXCEPTION 'Klasa ma już w tym czasie zajęcia';
     END IF;
 
