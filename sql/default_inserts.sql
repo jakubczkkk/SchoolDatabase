@@ -1,3 +1,5 @@
+-- plik zawiera podstawowe inserty umożliwijące pokazanie działania bazy danych
+
 INSERT INTO nauczyciel (imie, nazwisko) VALUES
   ('Paulina', 'Sobczak'),
   ('Henryk', 'Bąk'),

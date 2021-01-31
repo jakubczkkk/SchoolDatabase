@@ -1,3 +1,5 @@
+-- plik zaiera widoki dla wszystkich tabel
+
 CREATE OR REPLACE VIEW uczen_raport AS
 SELECT id_uczen "ID", imie "Imię", nazwisko "Nazwisko", id_klasa "Klasa"
 FROM uczen

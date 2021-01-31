@@ -1,3 +1,5 @@
+-- plik zawiera polecenia tworzące tabele
+
 CREATE TABLE nauczyciel (
   id_nauczyciel SERIAL PRIMARY KEY,
   imie TEXT,

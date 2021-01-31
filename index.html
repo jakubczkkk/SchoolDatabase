@@ -129,7 +129,7 @@
 
             <div class="edytowanie" id="zmien-frekwencja">
               <form id="zmien-frekwencja-form">
-                ID
+                ID Frekwencji
                 <input name="id" type="text"><br>
                 <select name="opis" size="1">
                   <option value="Nieobecność nieusprawiedliwiona">Nieobecność usprawiedliwiona</option>
@@ -142,9 +142,9 @@
 
             <div class="edytowanie" id="zmien-ocena">
               <form id="zmien-ocena-form">
-                ID
+                ID Oceny
                 <input name="id" type="text"><br>
-                Ocena
+                Nowa ocena
                 <input name="opis" type="text"><br>
               </form>
               <button onclick="zmien('ocena')">Zmień ocenę</button>
@@ -152,9 +152,9 @@
 
             <div class="edytowanie" id="zmien-oplata">
               <form id="zmien-oplata-form">
-                ID
+                ID Oplaty
                 <input name="id" type="text"><br>
-                Ile wplacamy
+                Ile wpłacamy?
                 <input name="ile_zostalo_zaplacone" type="text"><br>
               </form>
               <button onclick="zmien('oplata')">Dokonaj wpłaty</button>
@@ -162,9 +162,9 @@
 
             <div class="edytowanie" id="zmien-przedmiot_nauczany_w_klasie">
               <form id="zmien-przedmiot_nauczany_w_klasie-form">
-                ID
+                ID przedmiotu w klasie
                 <input name="id" type="text"><br>
-                ID nowego nauczyciela
+                ID nowego nauczyciela przedmiotu
                 <input name="id_nauczyciel" type="text"><br>
               </form>
               <button onclick="zmien('przedmiot_nauczany_w_klasie')">Zmien nauczyciela przedmiotu</button>
@@ -172,7 +172,7 @@
 
             <div class="edytowanie" id="zmien-klasa">
               <form id="zmien-klasa-form">
-                ID
+                ID Klasy
                 <input name="id" type="text"><br>
                 ID nowego wychowawcy
                 <input name="id_wychowawca" type="text"><br>
@@ -182,9 +182,9 @@
 
             <div class="edytowanie" id="zmien-plan_lekcji">
               <form id="zmien-plan_lekcji-form">
-                ID
+                ID zajęć z planu lekcji
                 <input name="id" type="text"><br>
-                Dzień tygodnia
+                Nowy dzień tygodnia
                 <select name="dzien_tygodnia" size="1">
                   <option value="Poniedziałek">Poniedziałek</option>
                   <option value="Wtorek">Wtorek</option>
@@ -192,7 +192,7 @@
                   <option value="Czwartek">Czwartek</option>
                   <option value="Piątek">Piątek</option>
                 </select><br>
-                Godzina lekcyjna
+                Nowa godzina lekcyjna
                 <input name="id_godzina_lekcyjna" type="text"><br>
                 Nowa sala
                 <input name="id_sala" type="text"><br>
@@ -213,7 +213,7 @@
                 <option value="lekcja">Lekcja</option>
               </select><br>
               
-              Podaj ID
+              Podaj ID rekordu, który usuwamy
               <input type="text" name="id"><br>
             </form>
             <button onclick="usun()">Usuń</button>
