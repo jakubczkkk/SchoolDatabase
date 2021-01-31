@@ -228,7 +228,7 @@ AS $$ BEGIN
     RETURN OLD;
 END $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER usun_ucznia
+CREATE TRIGGER delete_uczen
     BEFORE DELETE ON uczen
     FOR EACH ROW
     EXECUTE PROCEDURE usun_ucznia();
@@ -247,7 +247,21 @@ AS $$ BEGIN
     RETURN OLD;
 END $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER usun_nauczyciela
+CREATE TRIGGER delete_nauczyciel
     BEFORE DELETE ON nauczyciel
     FOR EACH ROW
     EXECUTE PROCEDURE usun_nauczyciela();
+
+
+
+CREATE OR REPLACE FUNCTION usun_lekcje()
+RETURNS TRIGGER
+AS $$ BEGIN
+    DELETE FROM frekwencja f WHERE f.id_lekcja=OLD.id_lekcja;
+    RETURN OLD;
+END $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_lekcja
+    BEFORE DELETE ON lekcja
+    FOR EACH ROW
+    EXECUTE PROCEDURE usun_lekcje();

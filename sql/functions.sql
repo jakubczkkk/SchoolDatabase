@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION plan_lekcji_klasy(TEXT)
-RETURNS TABLE (Godzina INTEGER, Poniedziałek TEXT, Wtorek TEXT, Środa TEXT, Czwartek TEXT, Piątek TEXT )
+RETURNS TABLE ("Godzina" INTEGER, "Poniedziałek" TEXT, "Wtorek" TEXT, "Środa" TEXT, "Czwartek" TEXT, "Piątek" TEXT )
 AS $$ BEGIN
     IF (SELECT NOT EXISTS (SELECT 1 FROM klasa WHERE id_klasa=$1)) THEN
         RAISE EXCEPTION 'Nie ma takiej klasy';
@@ -22,6 +22,9 @@ END $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION oceny_ucznia(INTEGER)
 RETURNS TABLE ("Przedmiot" TEXT, "Średnia" TEXT, "Ocena końcowa" INTEGER)
 AS $$ BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM uczen WHERE id_uczen=$1)) THEN
+        RAISE EXCEPTION 'Nie ma takiego ucznia';
+    END IF;
     RETURN QUERY
     SELECT p.nazwa "Przedmiot", TO_CHAR(AVG(o.opis), 'FM999999999.00') "Średnia", 
     CASE
@@ -40,6 +43,9 @@ END $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION info_frekwencja(INTEGER)
 RETURNS TABLE ("Wszystkie lekcje" BIGINT, "Obecność" BIGINT, "Nieob. uspr." BIGINT, "Nieob. nieuspr." BIGINT, "Frekwencja" TEXT)
 AS $$ BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM uczen WHERE id_uczen=$1)) THEN
+        RAISE EXCEPTION 'Nie ma takiego ucznia';
+    END IF;
     RETURN QUERY
     SELECT
     (SELECT COUNT(*) FROM frekwencja WHERE id_uczen=$1) "Wszystkie lekcje",
@@ -52,6 +58,23 @@ END $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION info_oplata(INTEGER)
 RETURNS TABLE ("ID Opłaty" INTEGER, "Ile brakuje" float8, "Opis" TEXT)
 AS $$ BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM uczen WHERE id_uczen=$1)) THEN
+        RAISE EXCEPTION 'Nie ma takiego ucznia';
+    END IF;
     RETURN QUERY
     SELECT id_oplata "ID Opłaty", ile_do_zaplacenia - ile_zostalo_zaplacone "Ile brakuje", opis "Opis" FROM oplata WHERE id_uczen=$1 AND ile_do_zaplacenia-ile_zostalo_zaplacone > 0;
+END $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION lista_obecnosci(INTEGER)
+RETURNS TABLE ("ID Frek." INTEGER, "Imie" TEXT, "Nazwisko" TEXT, "Opis" TEXT)
+AS $$ BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM lekcja WHERE id_lekcja=$1)) THEN
+        RAISE EXCEPTION 'Nie ma takiej lekcji';
+    END IF;
+    RETURN QUERY
+    SELECT f.id_frekwencja "ID Frek.", u.imie "Imie", u.nazwisko "Nazwisko", f.opis "Opis"
+    FROM frekwencja f
+    JOIN uczen u ON f.id_uczen=u.id_uczen
+    WHERE f.id_lekcja=$1
+    ORDER BY u.nazwisko, u.imie;
 END $$ LANGUAGE plpgsql;

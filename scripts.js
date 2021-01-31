@@ -41,7 +41,7 @@ function raport(tabela) {
     SERVER_URL + `raport/${tabela}`,
     {method: 'get', headers: {'Content-Type': 'application/json'}}
   )
-  .then(res => res.json().then(json => document.getElementById("raporty-tabela").innerHTML = JSONToTable(json)));
+  .then(res => res.json().then(json => document.getElementById("tabela-wrapper").innerHTML = JSONToTable(json)));
 
 }
 
@@ -64,6 +64,7 @@ function dodaj(tabela) {
   const data = {};
   [...document.forms[`dodaj-${tabela}-form`].getElementsByTagName("input")]
   .forEach(input => data[input.name] = input.value);
+  console.log(data);
   fetch(
     SERVER_URL + `dodaj/${tabela}`,
     {method: 'post', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)},

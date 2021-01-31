@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS nauczyciel, klasa, sala, przedmiot, uczen, oplata, godzina_lekcyjna, przedmiot_nauczany_w_klasie, plan_lekcji, lekcja, frekwencja, ocena CASCADE;
-
 CREATE TABLE nauczyciel (
   id_nauczyciel SERIAL PRIMARY KEY,
   imie TEXT,

@@ -2,34 +2,82 @@
   display: none;
 }
 
+input {
+  margin: 5px;
+}
+
+#info-response, #tabela-wrapper {
+
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
 body {
   display: grid;
   grid-template-rows: 40px auto;
+  font-size: 12px;
   margin: 0px;
   height: 100vh;
+  text-align: center;
 }
 
 header {
-  background-color: blue;
+  background-color: rgb(4, 4, 49);
   font-size: 30px;
-  color: white;
+  color: rgb(245, 239, 239);
   text-transform: uppercase;
   text-align: center;
 }
 
 main {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
-  /* height: 100%; */
+}
+
+#baza {
+  display: grid;
+  grid-template-rows: 230px auto;
+}
+
+button {
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: rgb(29, 9, 43);
+  color: white;
+  padding: 5px;
+  margin: 1px;
+  text-transform: uppercase;
+}
+
+.akcja-nav button {
+  background-color: rgb(100, 29, 151);
+  font-size: 12px;
+}
+
+#tabela-wrapper table {
+  margin: 20px;
 }
 
 #raporty {
-  background-color: #615fbb;
+  background-color: #a8a8cf;
+  display: flex;
+  flex-direction: column;
 }
 
 #edycja-bazy {
   background-color: #9190c7;
+}
+
+#informacje {
+  background-color:#a3acb3;
+}
+
+#raporty, #edycja-bazy, #informacje {
+  padding: 10px;
 }
 
 table {
