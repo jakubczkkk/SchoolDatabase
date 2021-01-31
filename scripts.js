@@ -64,7 +64,6 @@ function dodaj(tabela) {
   const data = {};
   [...document.forms[`dodaj-${tabela}-form`].getElementsByTagName("input")]
   .forEach(input => data[input.name] = input.value);
-  console.log(data);
   fetch(
     SERVER_URL + `dodaj/${tabela}`,
     {method: 'post', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)},

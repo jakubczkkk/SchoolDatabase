@@ -129,6 +129,9 @@ CREATE TRIGGER insert_oplata
 CREATE OR REPLACE FUNCTION zmien_ocene()
 RETURNS TRIGGER
 AS $$ BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM ocena WHERE id_ocena = NEW.id_ocena LIMIT 1)) THEN
+        RAISE EXCEPTION 'Nie ma oceny o takim ID';
+    END IF;
     IF (
     NEW.opis <> 5 AND NEW.opis <> 4.5 AND NEW.opis <> 4 AND NEW.opis <> 3.5
     AND NEW.opis <> 3 AND NEW.opis <> 2.5 AND NEW.opis <> 2 AND NEW.opis <> 1
@@ -151,6 +154,9 @@ RETURNS TRIGGER
 AS $$ DECLARE
     uczen_record record;
 BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM oplata WHERE id_oplata = NEW.id_oplata LIMIT 1)) THEN
+        RAISE EXCEPTION 'Nie ma opłaty o takim ID';
+    END IF;
     IF NEW.ile_zostalo_zaplacone <= 0 THEN
         RAISE EXCEPTION 'Podaj liczbę większą od zera.';
     ELSIF NEW.ile_zostalo_zaplacone > (OLD.ile_do_zaplacenia - OLD.ile_zostalo_zaplacone) THEN

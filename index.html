@@ -96,7 +96,7 @@
 
             <div class="dodawanie" id="dodaj-ocena">
               <form id="dodaj-ocena-form">
-                ID_Ucznia
+                ID Ucznia
                 <input name="id_uczen" type="text"><br>
                 ID Przedmiotu
                 <input name="id_przedmiot" type="text"><br>
@@ -108,7 +108,7 @@
 
             <div class="dodawanie" id="dodaj-oplata">
               <form id="dodaj-oplata-form">
-                ID_Ucznia (Wpisz 0, żeby dodać opłaty wszystkim uczniom)
+                ID Ucznia (wpisz 0, żeby dodać opłaty wszystkim uczniom)
                 <input name="id_uczen" type="text"><br>
                 Ile do zapłaty
                 <input name="ile_do_zaplacenia" type="text"><br>
@@ -123,7 +123,7 @@
             <button onclick="edytowanie('frekwencja')">Frekwencja</button>
             <button onclick="edytowanie('ocena')">Ocena</button>
             <button onclick="edytowanie('oplata')">Opłata</button>
-            <button onclick="edytowanie('przedmiot_nauczany_w_klasie')">Przedmiot nauczany_w_klasie</button>
+            <button onclick="edytowanie('przedmiot_nauczany_w_klasie')">Przedmiot nauczany w klasie</button>
             <button onclick="edytowanie('klasa')">Klasa</button>
             <button onclick="edytowanie('plan_lekcji')">Plan lekcji</button>
 
@@ -167,7 +167,7 @@
                 ID nowego nauczyciela
                 <input name="id_nauczyciel" type="text"><br>
               </form>
-              <button onclick="zmien('przedmiot_nauczany_w_klasie')">Zmien nauczyciela</button>
+              <button onclick="zmien('przedmiot_nauczany_w_klasie')">Zmien nauczyciela przedmiotu</button>
             </div>
 
             <div class="edytowanie" id="zmien-klasa">
@@ -177,7 +177,7 @@
                 ID nowego wychowawcy
                 <input name="id_wychowawca" type="text"><br>
               </form>
-              <button onclick="zmien('klasa')">Zmien nauczyciela</button>
+              <button onclick="zmien('klasa')">Zmien wychowawcę klasy</button>
             </div>
 
             <div class="edytowanie" id="zmien-plan_lekcji">
@@ -233,7 +233,7 @@
               Wybierz klase
               <input name="id_klasa" type="text">
             </form>
-            <button onclick="info('plan_lekcji_klasy')">Wyswietl plan lekcji klasy</button>
+            <button onclick="info('plan_lekcji_klasy')">Wyświetl plan lekcji klasy</button>
           </div>
 
           <div class="informacje" id="info-oceny_ucznia">
@@ -241,7 +241,7 @@
               Wybierz ucznia
               <input name="id_uczen" type="text">
             </form>
-            <button onclick="info('oceny_ucznia')">Wyswietl oceny ucznia</button>
+            <button onclick="info('oceny_ucznia')">Wyświetl oceny ucznia</button>
           </div>
 
           <div class="informacje" id="info-info_frekwencja">
@@ -249,7 +249,7 @@
               Wybierz ucznia
               <input name="id_uczen" type="text">
             </form>
-            <button onclick="info('info_frekwencja')">Wyswietl informacje o frekwencji ucznia</button>
+            <button onclick="info('info_frekwencja')">Wyświetl informacje o frekwencji ucznia</button>
           </div>
 
           <div class="informacje" id="info-info_oplata">
@@ -257,7 +257,7 @@
               Wybierz ucznia
               <input name="id_uczen" type="text">
             </form>
-            <button onclick="info('info_oplata')">Wyswietl informacje o opłatach ucznia</button>
+            <button onclick="info('info_oplata')">Wyświetl informacje o opłatach ucznia</button>
           </div>
 
           <div class="informacje" id="info-lista_obecnosci">
@@ -265,7 +265,7 @@
               Wybierz lekcje
               <input name="id_lekcja" type="text">
             </form>
-            <button onclick="info('lista_obecnosci')">Wyswietl listę obecności na lekcji</button>
+            <button onclick="info('lista_obecnosci')">Wyświetl listę obecności na lekcji</button>
           </div>
 
           <div id="info-response">
