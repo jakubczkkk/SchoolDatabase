@@ -109,7 +109,7 @@ BEGIN
         END LOOP;
         RETURN NULL;
     ELSE
-        NEW.ile_do_zaplacenia = NEW.ile_do_zaplacenia * 100;
+        NEW.ile_do_zaplacenia = NEW.ile_do_zaplacenia;
         NEW.ile_zostalo_zaplacone = 0;
         RETURN NEW;
     END IF;
@@ -216,7 +216,7 @@ BEGIN
     ELSIF NEW.ile_zostalo_zaplacone > (OLD.ile_do_zaplacenia - OLD.ile_zostalo_zaplacone) THEN
         RAISE EXCEPTION 'Za dużo! Wystarczy wpłacić %', (OLD.ile_do_zaplacenia - OLD.ile_zostalo_zaplacone);
     END IF;
-    NEW.ile_zostalo_zaplacone = NEW.ile_zostalo_zaplacone + 100 * OLD.ile_zostalo_zaplacone;
+    NEW.ile_zostalo_zaplacone = NEW.ile_zostalo_zaplacone + OLD.ile_zostalo_zaplacone;
     RETURN NEW;
 END $$ LANGUAGE plpgsql;
 

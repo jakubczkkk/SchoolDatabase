@@ -49,7 +49,7 @@ FROM sala
 ORDER BY numer;
 
 CREATE OR REPLACE VIEW oplata_raport AS
-SELECT o.id_oplata "ID", o.opis "Opis", o.ile_do_zaplacenia / 100 "Do zapłaty", o.ile_zostalo_zaplacone / 100 "Zapłacono", u.imie "Imię", u.nazwisko "Nazwisko"
+SELECT o.id_oplata "ID", o.opis "Opis", o.ile_do_zaplacenia "Do zapłaty", o.ile_zostalo_zaplacone "Zapłacono", u.imie "Imię", u.nazwisko "Nazwisko"
 FROM oplata o
 JOIN uczen u ON u.id_uczen=o.id_uczen
 ORDER BY u.nazwisko, u.imie, o.id_oplata;

@@ -29,8 +29,8 @@ CREATE TABLE uczen (
 CREATE TABLE oplata (
   id_oplata SERIAL PRIMARY KEY,
   id_uczen INTEGER REFERENCES uczen(id_uczen),
-  ile_do_zaplacenia FLOAT,
-  ile_zostalo_zaplacone FLOAT,
+  ile_do_zaplacenia INTEGER,
+  ile_zostalo_zaplacone INTEGER,
   opis TEXT
 );
 
