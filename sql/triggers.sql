@@ -109,6 +109,7 @@ BEGIN
         END LOOP;
         RETURN NULL;
     ELSE
+        NEW.ile_do_zaplacenia = NEW.ile_do_zaplacenia * 100;
         NEW.ile_zostalo_zaplacone = 0;
         RETURN NEW;
     END IF;
@@ -129,9 +130,6 @@ CREATE TRIGGER insert_oplata
 CREATE OR REPLACE FUNCTION zmien_ocene()
 RETURNS TRIGGER
 AS $$ BEGIN
-    IF (SELECT NOT EXISTS (SELECT 1 FROM ocena WHERE id_ocena = NEW.id_ocena LIMIT 1)) THEN
-        RAISE EXCEPTION 'Nie ma oceny o takim ID';
-    END IF;
     IF (
     NEW.opis <> 5 AND NEW.opis <> 4.5 AND NEW.opis <> 4 AND NEW.opis <> 3.5
     AND NEW.opis <> 3 AND NEW.opis <> 2.5 AND NEW.opis <> 2 AND NEW.opis <> 1
@@ -149,20 +147,76 @@ CREATE TRIGGER update_ocena
 
 
 
+CREATE OR REPLACE FUNCTION zmien_wychowawce()
+RETURNS TRIGGER
+AS $$ BEGIN
+    IF (SELECT EXISTS (SELECT 1 FROM klasa WHERE id_wychowawca = NEW.id_wychowawca LIMIT 1)) THEN
+        RAISE EXCEPTION 'Nauczyciel jest już wychowawcą innej klasy';
+    END IF;
+    IF (SELECT NOT EXISTS (SELECT 1 FROM nauczyciel WHERE id_nauczyciel = NEW.id_wychowawca LIMIT 1)) THEN
+        RAISE EXCEPTION 'Nie ma takiego nauczyciela';
+    END IF;
+    RETURN NEW;
+END $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_klasa
+    BEFORE UPDATE ON klasa
+    FOR EACH ROW
+    EXECUTE PROCEDURE zmien_wychowawce();
+
+
+
+CREATE OR REPLACE FUNCTION zmien_nauczyciela()
+RETURNS TRIGGER
+AS $$ DECLARE
+    lekcje_nauczyciela record;
+    lekcje_klasy record;
+BEGIN
+    IF (SELECT NOT EXISTS (SELECT 1 FROM nauczyciel WHERE id_nauczyciel = NEW.id_nauczyciel LIMIT 1)) THEN
+        RAISE EXCEPTION 'Nie ma takiego nauczyciela';
+    END IF;
+    FOR lekcje_nauczyciela IN
+    SELECT pl.id_godzina_lekcyjna, pl.dzien_tygodnia 
+    FROM plan_lekcji pl
+    JOIN przedmiot_nauczany_w_klasie pnk ON pnk.id_przedmiot_nauczany_w_klasie=pl.id_przedmiot_nauczany_w_klasie
+    WHERE pnk.id_nauczyciel=NEW.id_nauczyciel 
+    LOOP
+        FOR lekcje_klasy IN
+        SELECT pl2.id_godzina_lekcyjna, pl2.dzien_tygodnia
+        FROM plan_lekcji pl2
+        WHERE pl2.id_przedmiot_nauczany_w_klasie=OLD.id_przedmiot_nauczany_w_klasie
+        LOOP
+            IF lekcje_nauczyciela.id_godzina_lekcyjna=lekcje_klasy.id_godzina_lekcyjna
+            AND lekcje_nauczyciela.dzien_tygodnia=lekcje_klasy.dzien_tygodnia
+            THEN
+                RAISE EXCEPTION 'Nowy nauczyciel ma już w tym czasie zajęcia.';
+            END IF;
+        END LOOP;
+    END LOOP;
+    RETURN NEW;
+END $$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_przedmiot_nauczany_w_klasie
+    BEFORE UPDATE ON przedmiot_nauczany_w_klasie
+    FOR EACH ROW
+    EXECUTE PROCEDURE zmien_nauczyciela();
+
+
+
 CREATE OR REPLACE FUNCTION dodaj_wplate()
 RETURNS TRIGGER
 AS $$ DECLARE
     uczen_record record;
 BEGIN
-    IF (SELECT NOT EXISTS (SELECT 1 FROM oplata WHERE id_oplata = NEW.id_oplata LIMIT 1)) THEN
-        RAISE EXCEPTION 'Nie ma opłaty o takim ID';
+    IF OLD.ile_do_zaplacenia=OLD.ile_zostalo_zaplacone THEN
+        RAISE EXCEPTION 'Opłata została już pokryta wcześniej';
     END IF;
     IF NEW.ile_zostalo_zaplacone <= 0 THEN
         RAISE EXCEPTION 'Podaj liczbę większą od zera.';
     ELSIF NEW.ile_zostalo_zaplacone > (OLD.ile_do_zaplacenia - OLD.ile_zostalo_zaplacone) THEN
         RAISE EXCEPTION 'Za dużo! Wystarczy wpłacić %', (OLD.ile_do_zaplacenia - OLD.ile_zostalo_zaplacone);
     END IF;
-    NEW.ile_zostalo_zaplacone = NEW.ile_zostalo_zaplacone + OLD.ile_zostalo_zaplacone;
+    NEW.ile_zostalo_zaplacone = NEW.ile_zostalo_zaplacone + 100 * OLD.ile_zostalo_zaplacone;
     RETURN NEW;
 END $$ LANGUAGE plpgsql;
 
