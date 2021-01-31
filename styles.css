@@ -53,7 +53,7 @@ button {
   text-transform: uppercase;
 }
 
-.akcja-nav button {
+.akcja-nav button, .informacje button {
   background-color: rgb(100, 29, 151);
   font-size: 12px;
 }
