@@ -56,13 +56,13 @@ AS $$ BEGIN
 END $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION info_oplata(INTEGER)
-RETURNS TABLE ("ID Opłaty" INTEGER, "Ile brakuje" float8, "Opis" TEXT)
+RETURNS TABLE ("ID Opłaty" INTEGER, "Ile brakuje" INTEGER, "Opis" TEXT)
 AS $$ BEGIN
     IF (SELECT NOT EXISTS (SELECT 1 FROM uczen WHERE id_uczen=$1)) THEN
         RAISE EXCEPTION 'Nie ma takiego ucznia';
     END IF;
     RETURN QUERY
-    SELECT id_oplata "ID Opłaty", ile_do_zaplacenia - ile_zostalo_zaplacone "Ile brakuje", opis "Opis" FROM oplata WHERE id_uczen=$1 AND ile_do_zaplacenia-ile_zostalo_zaplacone > 0;
+    SELECT id_oplata "ID Opłaty", (ile_do_zaplacenia - ile_zostalo_zaplacone) "Ile brakuje", opis "Opis" FROM oplata WHERE id_uczen=$1 AND ile_do_zaplacenia-ile_zostalo_zaplacone > 0;
 END $$ LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION lista_obecnosci(INTEGER)
